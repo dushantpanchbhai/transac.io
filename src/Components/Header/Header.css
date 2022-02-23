@@ -1,0 +1,14 @@
+#NavMain
+{
+    padding: 3px !important;
+}
+
+#NavContainer
+{
+    display: flex !important;
+}
+
+#navbarText
+{
+    justify-content: flex-end !important;
+}
