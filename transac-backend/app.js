@@ -1,7 +1,10 @@
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const routes = require("./authRoutes.js");
+const errorHandler = require("./errorMiddleware.js");
 
 var port = 8000; //port
 const app = express();
@@ -29,32 +32,16 @@ mongoose
 //importing schemas;
 const BookSchema = require("./BookSchema.js");
 const UserSchema = require("./UserSchema.js");
-const { response } = require("express");
 
 app.get("/", (req, res) => {
   res.send({ title: "Transac.io", connected: true });
 });
 
+//login
+app.use("/api/auth", routes);
 //sign up page handle
-app.post("/api/createUser", async (req, res) => {
-  const UserData = {
-    username: req.body.username,
-    email: req.body.email,
-    password: req.body.password,
-    books: [],
-  };
-  let data;
-  await UserSchema.create(UserData)
-    .then((res) => {
-      console.log("account created succesfully");
-      data = res;
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(400), send(err);
-    });
-  res.status(201).send(data);
-});
+app.use("/api", routes);
+app.use(errorHandler);
 
 //posting data from input to create transac book
 app.post("/api/create/:id", async (req, res) => {
@@ -85,15 +72,17 @@ app.post("/api/create/:id", async (req, res) => {
 app.get("/api/transacBook/:id", async (req, res) => {
   console.log("fetching transac book");
   const id = req.params.id;
-  let data;
-  await UserSchema.findOne({ _id: id })
-    .then((res) => {
-      data = res;
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-  res.send(data.books);
+  if (id == "undefined") {
+    console.log("thowed error");
+    res.status(400).send({"error" : "Login Error! plese revisit webpage"});
+  } else {
+    const { books } = await UserSchema.findOne({ _id: id });
+    if (books) {
+      res.status(201).send(books);
+    } else {
+      res.status(400).send({"error" : "Error Fetching Data, Check your Internet"});
+    }
+  }
 });
 
 //deleting book

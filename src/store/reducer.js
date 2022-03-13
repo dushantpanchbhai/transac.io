@@ -13,8 +13,12 @@ const reducer = (state = initialState, action) => {
       return { ...state, accounts: action.payload };
     case "DeleteBook":
       return { ...state, accounts: action.payload };
+    case "Login":
+      return {...state,user: action.payload,isLogged : true};
+    case "Logout":
+      return {...state, isLogged : false, user : []};
     case "AddUser":
-      return { ...state, user: action.payload };
+      return { ...state,user: action.payload,isLogged : true, accounts : []};
     default:
       return state;
   }

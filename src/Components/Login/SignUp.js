@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import {useDispatch} from "react-redux";
 import axios from "../../axios.js";
-import { AddUser } from "../../store/action.js";
+import {AddUser,login} from "../../store/action.js";
+import "./SignUp.css";
 
 function SignUp() {
   const dispatch = useDispatch();
@@ -10,25 +11,43 @@ function SignUp() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    let userInfo = localStorage.getItem("userInfo");
+    if (userInfo) {
+      userInfo = JSON.parse(userInfo);
+      console.log(userInfo);
+      const id = userInfo._id;
+      dispatch(login(userInfo));
+      navigate(`/setUser/${id}`);
+    }
+  },[navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await axios
-      .post("/api/createUser", {
+    try {
+      const config = {
+        header: {
+          "Content-type": "application/json",
+        },
+      };
+
+      setLoading(true);
+      const { data } = await axios.post("/api/createUser", {
         username: username,
         email: email,
         password: password,
-      })
-      .then((res) => {
-        if (res.status === 400) {
-          alert("Unable to create account");
-        } else {
-          alert("account create successfully");
-          console.log(res.data);
-          dispatch(AddUser(res.data));
-          navigate(`/setUser/${res.data._id}`);
-        }
-      });
+      },config);
+
+      console.log(data);
+      localStorage.setItem("userInfo", JSON.stringify(data));
+      dispatch(AddUser(data));
+      setLoading(false);
+      navigate(`/setUser/${data._id}`);
+    } catch (error) {
+      alert(error.response.data.message);
+    }
   };
 
   return (
@@ -37,7 +56,6 @@ function SignUp() {
         <h1>Welcome to Transac.io</h1>
         <span id="short_title">Let's start by creating your account</span>
       </div>
-
       <div className="login-container">
         <div className="card" id="login-content">
           <div className="login-title">Sign up</div>
@@ -95,6 +113,11 @@ function SignUp() {
             >
               Sign Up
             </button>
+            {loading && (
+              <div className="d-flex justify-content-center mt-3">
+                <div className="spinner-border" role="status" />
+              </div>
+            )}
           </form>
           <hr></hr>
           <div className="login-bottom">

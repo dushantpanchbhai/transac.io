@@ -1,19 +1,56 @@
-import React,{useState,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import "./Login.css";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "../../axios";
+import {useDispatch} from "react-redux";
+import { useNavigate } from "react-router-dom";
+import {login} from "../../store/action.js";
 
 function Login() {
-  const [data,setData] = useState([]);
-  
-  useEffect(()=> {
-    async function fetchData() {
-      const req = await axios.get('/');
-      setData(req.data);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    let userInfo = localStorage.getItem("userInfo");
+    if (userInfo) {
+      userInfo = JSON.parse(userInfo);
+      const id = userInfo._id;
+      dispatch(login(userInfo));
+      navigate(`/setUser/${id}`);
     }
-    fetchData();
-    console.log(data);
-  },[])
+  }, [navigate]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const config = {
+        header: {
+          "Content-type": "application/json",
+        },
+      };
+
+      setLoading(true);
+      const { data } = await axios.post(
+        "/api/auth/login",
+        {
+          email,
+          password,
+        },
+        config
+      );
+      console.log(data);
+      localStorage.setItem("userInfo", JSON.stringify(data));
+      setLoading(false);
+      navigate('/');
+    } catch (error) {
+      alert(error.response.data.message);
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="container" id="Login-page">
@@ -26,31 +63,51 @@ function Login() {
         <div className="card" id="login-content">
           <div className="login-title">Log In</div>
           <hr></hr>
-          <form id="filling-form">
-            <div class="mb-3">
-              <label for="exampleInputEmail1" class="form-label">
-                Email address
-              </label>
+          <form
+            id="filling-form"
+            onSubmit={(e) => {
+              handleSubmit(e);
+            }}
+          >
+            <div className="mb-3">
+              <label className="form-label">Email address</label>
               <input
                 type="email"
-                class="form-control"
+                className="form-control"
                 id="exampleInputEmail1"
                 aria-describedby="emailHelp"
+                value={email}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
               />
             </div>
-            <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">
-                Password
-              </label>
+            <div className="mb-3">
+              <label className="form-label">Password</label>
               <input
                 type="password"
-                class="form-control"
+                className="form-control"
                 id="exampleInputPassword1"
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
               />
             </div>
-            <button type="submit" class="btn btn-primary">
+            <button
+              type="submit"
+              className="btn btn-primary"
+              onClick={(e) => {
+                handleSubmit(e);
+              }}
+            >
               Log In
             </button>
+            {loading && (
+              <div className="d-flex justify-content-center mt-3">
+                <div className="spinner-border" role="status"></div>
+              </div>
+            )}
           </form>
           <hr></hr>
           <div className="login-bottom">

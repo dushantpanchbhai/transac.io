@@ -8,8 +8,9 @@ import { createStore } from "redux";
 import { Provider } from "react-redux";
 //importing reducer which have action mapping
 import reducer from "./store/reducer";
+import { composeWithDevTools } from 'redux-devtools-extension';
 
-const store = createStore(reducer);
+const store = createStore(reducer,composeWithDevTools());
 
 store.subscribe(() => {
   console.log(store.getState());

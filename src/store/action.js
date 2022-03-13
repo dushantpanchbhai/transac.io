@@ -1,5 +1,3 @@
-import axios from "../axios.js";
-
 export const addBook = (content) => {
   console.log("adding to form");
   return {
@@ -23,6 +21,21 @@ export const AddUser = (data) => {
     payload: data,
   };
 };
+
+export const login = (data) => {
+  console.log('logging in');
+  return{
+    type : "Login",
+    payload : data,
+  }
+};
+
+export const logout = () => {
+  console.log("logging out");
+  return{
+    type : "Logout"
+  }
+}
 
 export const DeleteBook = (data) => {
   console.log("deleting book");

@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { addBook } from "../../store/action.js";
 import axios from "../../axios";
-import {useParams} from "react-router-dom";
 
 class InputBook2 extends Component {
   constructor(props) {
@@ -43,6 +42,7 @@ class InputBook2 extends Component {
       .catch((error) => {
         console.log(error);
       });
+      
     this.setState({
       bookName: "",
       balance: 0,
@@ -100,34 +100,6 @@ class InputBook2 extends Component {
               </div>
             </div>
           </div>
-          <div className="form-check mb-3">
-            <label className="form-check-label">
-              Have Previous Transactions?
-            </label>
-            <input
-              className="form-check-input"
-              type="checkbox"
-              checked={this.state.havePrevious}
-              id="defaultCheck1"
-              name="havePrevious"
-              onChange={(event) =>
-                this.setState({ havePrevious: event.target.checked })
-              }
-            />
-          </div>
-          {this.state.havePrevious === true && (
-            <div className="input-group mb-3">
-              <input
-                type="file"
-                className="form-control md-3"
-                id="inputGroupFile01"
-                value={this.state.file}
-                name="file"
-                onChange={(event) => this.handleChange(event)}
-              />
-            </div>
-          )}
-
           <button
             type="button"
             className="btn btn-primary"

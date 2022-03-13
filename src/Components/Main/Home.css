@@ -1,0 +1,19 @@
+.home-main-box
+{
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+}
+.home-left-bar
+{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+    pointer-events: auto;
+    max-height: 100% !important;
+    width: 258px;
+    opacity: 1;
+    background: rgba(211, 209, 203, 0.493);
+    color: rgba(25, 23, 17, 0.6);
+}

@@ -1,0 +1,12 @@
+#goodbye-gif
+{
+    margin: auto;
+}
+
+#logout-main
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
