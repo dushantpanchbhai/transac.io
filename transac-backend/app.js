@@ -21,8 +21,8 @@ app.use(cors());
 
 mongoose
   .connect(
-    "mongodb+srv://admin:dushant1234@cluster0.odxqa.mongodb.net/transac_data?retryWrites=true&w=majority"
-  )
+    "mongodb+srv://admin:dushant1234@cluster0.odxqa.mongodb.net/transac_data?retryWrites=true&w=majority",{ useNewUrlParser: true, useUnifiedTopology: true}
+  ) 
   .then(() => {
     console.log("connected to database");
   })

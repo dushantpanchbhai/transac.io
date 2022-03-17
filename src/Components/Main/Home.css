@@ -1,19 +1,239 @@
-.home-main-box
-{
-    display: flex;
-    flex-direction: row;
-    height: 100vh;
+.home-main-box {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  background-color: white;
+  font-family: "Inter", sans-serif;
 }
-.home-left-bar
-{
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    position: relative;
-    pointer-events: auto;
-    max-height: 100% !important;
-    width: 258px;
-    opacity: 1;
-    background: rgba(211, 209, 203, 0.493);
-    color: rgba(25, 23, 17, 0.6);
+.home-left-bar {
+  background-color: #fcfcfc;
+  flex: 15%;
+  padding-left: 35px;
+}
+.home-right-bar {
+  flex: 85%;
+  padding: 37px;
+}
+
+.transac-logo {
+  margin-top: 40px;
+
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 800;
+  font-size: 32px;
+  line-height: 39px;
+  letter-spacing: -0.04em;
+  color: #484a4f;
+}
+/* balance section */
+.balance-section {
+  margin-top: 51px;
+}
+.balance-title {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 29px;
+  color: #828282;
+}
+.balance-title > span {
+  margin-left: 9px;
+}
+.balance-icon {
+  width: 24px;
+  height: 24px;
+}
+.balance-inr {
+  margin-top: 14px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 29px;
+  color: #484a4f;
+}
+.balance-margin {
+  width: 90%;
+}
+
+/* transac book names */
+.transac-books {
+  margin-top: 38px;
+}
+.transac-book-title {
+  color: #828282;
+}
+.transac-book-title > span {
+  margin-left: 5px;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 20px;
+}
+.transac-book-list {
+  font-family: "Montserrat", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 17px;
+  color: #828282;
+}
+.transac-book-list > li {
+  list-style: none;
+  margin-top: 10px;
+}
+
+/* right navbar */
+.right-navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.nav-left-side {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.search-input {
+  width: 440px !important;
+  height: 56px;
+  background: #fcfcfc;
+  color: black;
+  border-radius: 50px;
+  border: none;
+  /* padding: 24px 24px 24px 24px; */
+  display: flex;
+  vertical-align: middle;
+}
+
+.search-icon {
+  width: 24px;
+  height: 24px;
+  margin: auto;
+  margin-left: 20px;
+}
+
+.search-input > input {
+  margin: auto;
+  border: none;
+  background-color: #fcfcfc;
+  width: 370px;
+  height: 24px;
+  margin-left: 10px;
+  outline: none;
+}
+
+.add-button {
+  margin: auto;
+  border: 2px solid rgba(189, 189, 189, 0.2);
+  box-sizing: border-box;
+  border-radius: 50px;
+  padding: 10px 20px 10px 20px;
+  cursor: pointer;
+}
+
+.add-button-inter {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 143%;
+  text-align: center;
+  letter-spacing: -0.03em;
+  color: #828282;
+}
+
+/* user log */
+.user-log {
+  margin-left: 40px;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  color: black;
+}
+.user-photo {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px 0px 0px 8px;
+  margin: auto;
+  margin-left: 10px;
+}
+.user-detail-log {
+  padding-left: 10px;
+  padding-right: 10px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+.user-name {
+  font-family: "inter", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 15px;
+  display: flex;
+  align-items: center;
+  color: #828282;
+}
+.user-id {
+  font-family: "inter", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  display: flex;
+  align-items: center;
+  color: #bdbdbd;
+}
+
+/* hey part body */
+.hey-info {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.hey-line1 > span {
+  margin-left: 10px;
+
+  font-family: "inter", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
+  color: #ffa14e;
+}
+
+.hey-line2 {
+  font-family: "inter", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 37px;
+  color: #1f1f1f;
+}
+
+/* body2 books bar */
+.body2-bar {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+.books-bar-list {
+  padding: 0px;
+  margin-bottom: 0px;
+}
+.books-bar-list > li {
+  display: inline;
+  list-style: none;
+  margin-left: 20px;
+
+  font-family: "inter",sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 22px;
+  color: #828282;
 }
