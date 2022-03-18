@@ -4,6 +4,7 @@ import { MdCreditCard } from "react-icons/md";
 import { BiBookBookmark } from "react-icons/bi";
 import { AiOutlineSearch } from "react-icons/ai";
 import { FaUserAlt } from "react-icons/fa";
+import PerTransac from "./PerTransac";
 
 class Home extends Component {
   constructor(props) {
@@ -45,7 +46,6 @@ class Home extends Component {
           </div>
         </div>
         <div className="home-right-bar">
-
           {/* navbar */}
           <div className="right-navbar">
             {/* search input */}
@@ -72,15 +72,19 @@ class Home extends Component {
 
           {/* body 1 start info */}
           <div className="hey-info">
-            <div className="hey-line1">👋<span>Hey Anddy’s Makeover!</span></div>
-            <div className="hey-line2">Your this month expense is INR 8000.</div>
+            <div className="hey-line1">
+              👋<span>Hey Anddy’s Makeover!</span>
+            </div>
+            <div className="hey-line2">
+              Your this month expense is INR 8000.
+            </div>
           </div>
 
           {/* body2 start bar */}
           <div className="body2-bar">
             <div className="books-bar">
               <ul className="books-bar-list">
-                <li style={{color:"#00ca81"}}>main</li>
+                <li style={{ color: "#00ca81" }}>main</li>
                 <li>self</li>
                 <li>others</li>
               </ul>
@@ -89,8 +93,11 @@ class Home extends Component {
               <hr></hr>
             </div>
           </div>
-          
+
           {/* body3 main transaction history */}
+          <div className="transaction-history-container">
+            <PerTransac date={2000} title={"amazon payment"} transDate={"16 march 2021 @ 5:00pm"} amount={2000} balance={20000}></PerTransac>
+          </div>
         </div>
       </div>
     );
