@@ -246,6 +246,7 @@
 }
 .per-transac {
   font-family: "inter", sans-serif;
+  margin-bottom: 20px;
 }
 .date-category {
   font-weight: 600;
@@ -269,7 +270,8 @@
 .transac-content {
   margin: auto;
   margin-left: 10px;
-  margin-right: 70px;
+  margin-right: 10px;
+  width: 300px;
 }
 .transac-title {
   font-weight: 700;
