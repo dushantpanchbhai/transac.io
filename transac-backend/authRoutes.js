@@ -1,6 +1,7 @@
 const express = require("express");
 const asyncHandler = require("express-async-handler");
-const UserSchema = require("./UserSchema");
+//const UserSchema = require("./UserSchema");
+const {userSchema} = require("./TransacSchema");
 const generateToken = require("./util/generateToken");
 const router = express.Router();
 
@@ -8,12 +9,12 @@ const signupHandler = asyncHandler(async (req, res) => {
   console.log("signing in ...");
   const { username, email, password } = req.body;
   const books = [];
-  const userExist = await UserSchema.findOne({ email });
+  const userExist = await userSchema.findOne({ email });
   if (userExist) { 
     res.status(400);
     throw new Error("user already exist");
   }
-  const user = await UserSchema.create({
+  const user = await userSchema.create({
     username,
     email,
     password,
@@ -25,7 +26,7 @@ const signupHandler = asyncHandler(async (req, res) => {
       _id: user._id,
       email: user.email,
       username: user.username,
-      books: user.books,
+      books_id: user.books,
       token: generateToken(user._id),
     });
   } else {
@@ -37,7 +38,7 @@ const signupHandler = asyncHandler(async (req, res) => {
 const loginHandler = asyncHandler(async (req, res) => {
   console.log("logging in ....");
   const { email, password } = req.body;
-  const user = await UserSchema.findOne({email});
+  const user = await userSchema.findOne({email});
   if (user && (await user.matchPassword(password))) {
     res.status(201).send({
       _id: user._id,

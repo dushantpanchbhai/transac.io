@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { addBook } from "../../store/action.js";
-import axios from "../../axios";
+  import axios from "../../axios";
 
+//included
 class InputBook2 extends Component {
   constructor(props) {
     super(props);
@@ -10,8 +11,6 @@ class InputBook2 extends Component {
       bookName: "",
       balance: 0,
       tag: "",
-      havePrevious: false,
-      file: null,
     };
   }
 
@@ -32,12 +31,9 @@ class InputBook2 extends Component {
         bookName: this.state.bookName,
         balance: this.state.balance,
         tag: this.state.tag,
-        previous: this.state.havePrevious,
       })
       .then((res) => {
-        console.log("res daa is : ")
-        console.log(res.data);
-        this.props.addBook(res.data.books);
+        this.props.addBook(res.data);
       })
       .catch((error) => {
         console.log(error);
@@ -47,7 +43,6 @@ class InputBook2 extends Component {
       bookName: "",
       balance: 0,
       tag: "",
-      havePrevious: false,
     });
     console.log("account after update is ");
     console.log(this.props.accounts);
