@@ -161,6 +161,14 @@
   margin: auto;
   margin-left: 10px;
 }
+.user-logout {
+  width: 25px;
+  height: 25px;
+  border-radius: 8px 0px 0px 8px;
+  margin: auto;
+  margin-left: 3px;
+  margin-right: 4px;
+}
 .user-detail-log {
   padding-left: 10px;
   padding-right: 10px;
@@ -226,7 +234,7 @@
   padding: 0px;
   margin-bottom: 0px;
 }
-.books-bar-list > li {
+.li_normal {
   display: inline;
   list-style: none;
   margin-left: 20px;
@@ -239,11 +247,27 @@
   color: #828282;
 }
 
+.li_activated {
+  display: inline;
+  list-style: none;
+  margin-left: 20px;
+
+  font-family: "inter", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 22px;
+  color: #00ca81;
+}
+
 /* transactions history */
 
 .transaction-history-container {
   margin-top: 10px;
   margin-left: 10px;
+  position: relative;
+  height: 60vh;
+  overflow: auto;
 }
 .per-transac {
   font-family: "inter", sans-serif;
@@ -325,4 +349,12 @@
   font-size: 16px;
   line-height: 20px;
   color: #828282;
+}
+
+/* extras */
+.link
+{
+  text-decoration: none;
+  font-family: "Inter";
+  color: #484a4f;
 }

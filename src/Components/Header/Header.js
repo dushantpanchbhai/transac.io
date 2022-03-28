@@ -1,16 +1,19 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import "./Header.css";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 function Header() {
   let isLogged = useSelector((state) => state.isLogged);
-  let userInfo;
-  if(isLogged)
-  {
-    userInfo = localStorage.getItem("userInfo");
-    userInfo = JSON.parse(userInfo);
+  const [userInfo,setUserInfo] = useState("");
+  console.log("is logged is ",isLogged);
+  useEffect(()=>{
+    if(isLogged)
+    {
+      const temp = localStorage.getItem("userInfo");
+      setUserInfo(JSON.parse(temp));
   }
+  },[isLogged]);
 
   return (
     <>
@@ -39,7 +42,7 @@ function Header() {
                 <Link
                   className="nav-link active"
                   aria-current="page"
-                  to={isLogged ? `/home/${userInfo._id}` : "/setUser"}
+                  to={isLogged ? `/home/${userInfo._id}` : "/"}
                 >
                   Home
                 </Link>

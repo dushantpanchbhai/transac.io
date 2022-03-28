@@ -16,12 +16,12 @@ class App extends Component {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<><Header/><StartPage/></>} />
-          <Route path="/login" element={<Login></Login>} />
-          <Route path="/signup" element={<SignUp/>} />
+          <Route path="/login" element={<><Header/><Login/></>} />
+          <Route path="/signup" element={<><Header/><SignUp/></>} />
           <Route path="/setUser/:id" element={<><Header/><SetUser/></>}/>
           <Route path="/home/:id" element={<Home/>}/>
           <Route path="/logout/:id" element={<Logout></Logout>}/>
-          <Route path="/addtransac/:id" element={<AddTransac></AddTransac>}/>
+          <Route path="/addtransac/:id" element={<><Header></Header><AddTransac></AddTransac></>}/>
         </Routes>
       </BrowserRouter>
     );

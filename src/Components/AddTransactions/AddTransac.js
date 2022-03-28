@@ -9,7 +9,7 @@ class AddTransac extends Component {
     this.state = {
       id: "",
       transacName: "",
-      amount: null,
+      amount: 0,
       tag: [],
       category: "",
       type: "Debit",
@@ -36,41 +36,18 @@ class AddTransac extends Component {
     console.log(list);
   };
 
-  // handleChange = (e) => {
-  //   console.log("handling change");
-  //   let item = e.target.name;
-  //   let val = e.target.value;
-  //   this.setState({ [item]: val });
-  // };
-
   handleSubmit = async (e) => {
-
-    const path = window.location.pathname;
-    const Id = path.split("/")[2];
-    console.log("id is ", Id);
-    console.log("amount is ", this.state.amount);
-    console.log(this.state.startDate);
-
-    //posting data
+    e.preventDefault();
+    // const path = window.location.pathname;
+    // const Id = path.split("/")[2];
     try {
       await axios
-        .post(`/api/new/${Id}`, {
+        .post(`/api/new/${this.state.id}`, {
           transacName: this.state.transacName,
           category: this.state.category,
           amount: this.state.amount,
           date: this.state.startDate,
           type: this.state.type,
-        })
-        .then((res) => {
-          console.log(res);
-          this.setState({
-            id: "",
-            transacName: "",
-            amount: null,
-            category: "",
-            type: "Debit",
-            startDate: new Date()
-          });
         })
         .catch((err) => {
           alert(err);
@@ -80,12 +57,11 @@ class AddTransac extends Component {
     }
 
     this.setState({
-      id: "",
+      amount: 0,
       transacName: "",
-      amount: null,
       category: "",
       type: "Debit",
-      startDate: new Date()
+      startDate: new Date(),
     });
     
     alert("Transaction added succesfully");
@@ -121,9 +97,8 @@ class AddTransac extends Component {
                   <input
                     type="number"
                     className="form-control"
-                    name="amount"
                     placeholder="Amount"
-                    value={this.state.amount}
+                    value={this.state.amount !== 0 ? this.state.amount : null}
                     onChange={(e) => {
                       this.setState({ amount: e.target.value });
                     }}
@@ -133,6 +108,7 @@ class AddTransac extends Component {
                   <label>Tag</label>
                   <select
                     className="form-control"
+                    value={this.state.category}
                     onChange={(e) => {
                       this.setState({ category: e.target.value });
                     }}
@@ -161,7 +137,7 @@ class AddTransac extends Component {
                   <DatePicker
                     className="form-control"
                     selected={this.state.startDate}
-                    onChange={(date: Date) => {
+                    onChange={(date) => {
                       this.setState({ startDate: date });
                     }}
                   />

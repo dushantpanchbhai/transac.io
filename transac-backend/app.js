@@ -34,7 +34,6 @@ mongoose
   });
 //importing schemas;
 const { userSchema, bookSchema, transacSchema } = require("./TransacSchema.js");
-const { response } = require("express");
 
 app.get("/", (req, res) => {
   res.send({ title: "Transac.io", connected: true });
@@ -50,7 +49,7 @@ app.use(errorHandler);
 app.use("/api", routes2);
 
 //fetch booktag
-app.use("/api",routes3);
+app.use("/api", routes3);
 
 //posting data from input to create transac book
 app.post("/api/create/:id", async (req, res) => {
@@ -112,6 +111,12 @@ app.delete("/api/transac/delete/:userId/:bookId", async (req, res) => {
   const { userId, bookId } = req.params;
   console.log(userId, bookId);
 
+  // deleting all transaction related to that book
+  await transacSchema.deleteMany({book_id : bookId}).catch((err) => {
+    console.log(err);
+    res.status(400).send(err);
+  });
+ 
   //deleting book;
   await bookSchema.deleteOne({ _id: bookId }).catch((err) => {
     console.log(err);
@@ -126,6 +131,7 @@ app.delete("/api/transac/delete/:userId/:bookId", async (req, res) => {
       res.status(400).send(err);
     });
 
+  // fetching books left data;
   const data = await bookSchema.find({ user_id: userId });
   res.status(201).send(data);
 });

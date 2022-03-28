@@ -9,7 +9,7 @@ class InputBook2 extends Component {
     super(props);
     this.state = {
       bookName: "",
-      balance: 0,
+      balance: null,
       tag: "",
     };
   }
@@ -41,7 +41,7 @@ class InputBook2 extends Component {
       
     this.setState({
       bookName: "",
-      balance: 0,
+      balance: null,
       tag: "",
     });
     console.log("account after update is ");
@@ -57,7 +57,6 @@ class InputBook2 extends Component {
             <input
               type="text"
               className="form-control"
-              id="exampleFormControlInput1"
               placeholder="Enter your Transaction book Name"
               value={this.state.bookName}
               name="bookName"
@@ -69,12 +68,13 @@ class InputBook2 extends Component {
               <label className="form-label">Current Balance</label>
               <div className="input-group">
                 <span className="input-group-text">Rs</span>
-                <span className="input-group-text">{this.state.balance}</span>
+                <span className="input-group-text">{this.state.balance ? this.state.balance : "0"}</span>
                 <input
-                  type="text"
+                  type="number"
                   className="form-control"
                   aria-label="Dollar amount (with dot and two decimal places)"
                   value={this.state.balance}
+                  placeholder="balance"
                   name="balance"
                   onChange={(event) => this.handleChange(event)}
                 />

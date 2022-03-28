@@ -2,12 +2,13 @@ const mongoose = require("mongoose");
 
 const TransacSchema = new mongoose.Schema(
   {
-    book_id: Object,
+    book_id: String,
     transacName: String,
     transacType: String,
     category : String,
     amount: Number,
     balance: Number,
+    totalBalance: Number,
     date : Date,
   },
   {timestamps: true},
@@ -37,6 +38,6 @@ UserSchema.methods.matchPassword = async function (enteredPassword) {
 
 const userSchema = new mongoose.model("UserSchema",UserSchema);
 const bookSchema = new mongoose.model("BookSchema",BookSchema);
-const transacSchema = new mongoose.model("TranacSchema",TransacSchema);
+const transacSchema = new mongoose.model("TransacSchema",TransacSchema);
 
 module.exports = {userSchema,bookSchema,transacSchema};

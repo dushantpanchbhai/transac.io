@@ -6,7 +6,7 @@ const router = express.Router();
 const addTransaction = asyncHandler(async (req, res) => {
   console.log("adding_transaction");
   const userId = req.params.id;
-  const {transacName,category,amount,type,date} = req.body;
+  var {transacName,category,amount,type,date} = req.body;
 
   //getting book data with given user id
   let data = await bookSchema
@@ -15,14 +15,21 @@ const addTransaction = asyncHandler(async (req, res) => {
       console.log(err);
     });
 
-  //calculating remain balance
-  console.log(typeof(amount));
+
+  let data2 = await bookSchema.find({user_id : userId}).catch((err)=>{console.log(err)});
+  var totalBalance = 0;
+  data2.map((items)=>{totalBalance += items.balance});
+  
+  amount = parseInt(amount);
   var remainBalance = 0;
   if (type == "Debit") {
     remainBalance = data.balance - amount;
+    totalBalance = totalBalance - amount;
   } else {
     remainBalance = data.balance + amount;
+    totalBalance = totalBalance + amount;
   }
+  
   //book id refrence for pushing it into the trnasac book
   let bookId = data._id;
 
@@ -34,6 +41,7 @@ const addTransaction = asyncHandler(async (req, res) => {
     category: category,
     amount: amount,
     balance: remainBalance,
+    totalBalance : totalBalance,
     date: date,
   };
   console.log(push_data);
