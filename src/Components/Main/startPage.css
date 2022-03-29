@@ -1,0 +1,164 @@
+.first-page {
+  height: 10np0vh;
+}
+.right-design {
+  position: absolute;
+  right: 0px;
+  top: -20px;
+  z-index: -2;
+  width: 50%;
+  /* height: 90vh; */
+}
+
+.intro_header {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  top: -300px;
+  justify-content: center;
+  text-align: center;
+}
+
+.intro-line1 {
+  font-family: "Montserrat", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 50px;
+  line-height: 110px;
+  color: #000000;
+}
+
+.intro-line2 {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 49px;
+  color: #717171;
+}
+
+.divider-line {
+  margin: auto;
+  margin-top: 20px;
+  width: 40%;
+  border: 1px solid #000000;
+}
+
+.intro-line3 {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 30px;
+  letter-spacing: -0.02em;
+  color: #64607d;
+  margin-top: 20px;
+}
+
+.start-button {
+  margin: auto;
+  margin-top: 20px;
+  background: #ff7f5c;
+  border-radius: 5px;
+}
+
+.start-button :hover {
+  background: #c02a0094;
+  border-radius: 5px;
+}
+
+.start-text {
+  color: white;
+  padding: 10px 40px 10px 40px;
+}
+
+.function-list {
+  margin: auto;
+  margin-top: 20px;
+  list-style-type: none;
+}
+
+.function-list > li {
+  display: flex;
+  flex-direction: row;
+  text-align: left;
+  margin-top: 10px;
+}
+.function-list > li > img {
+  height: fit-content;
+  width: fit-content;
+}
+.function-list > li > span {
+  padding-left: 10px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 30px;
+  letter-spacing: -0.02em;
+}
+
+.right-vector {
+  width: 40%;
+  height: auto;
+  z-index: -1;
+  position: absolute;
+  top: 300px;
+  right: 0px;
+}
+
+/* second page */
+.second-page {
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.steps-heading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
+}
+.steps-heading > hr {
+  width: 30%;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.how-works {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 70px;
+  line-height: 85px;
+  align-items: center;
+  text-align: center;
+  color: #505050;
+}
+.easy-steps {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 48px;
+  align-items: center;
+  text-align: center;
+  color: #505050;
+}
+
+.steps-images {
+  display: flex;
+  margin: auto;
+  margin-top: 100px;
+  text-align: center;
+}
+
+.second-left-design{
+  position: absolute;
+  width: fit-content;
+  height: fit-content;
+}

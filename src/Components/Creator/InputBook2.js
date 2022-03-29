@@ -76,6 +76,7 @@ class InputBook2 extends Component {
                   value={this.state.balance}
                   placeholder="balance"
                   name="balance"
+                  required="true"
                   onChange={(event) => this.handleChange(event)}
                 />
               </div>
