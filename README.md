@@ -1,4 +1,7 @@
-# Getting Started with Create React App
+# Transac.io
+A MERN Stack based website that stores users transactions.
+
+<img src="./transacio_front.png"></img>
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
