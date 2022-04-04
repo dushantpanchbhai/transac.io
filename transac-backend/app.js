@@ -8,7 +8,7 @@ const routes2 = require("./transacRoutes.js");
 const routes3 = require("./BookFetchRoutes.js");
 const errorHandler = require("./errorMiddleware.js");
 
-var port = 8000; //port
+var port = process.env.PORT || 8000; //port
 const app = express();
 app.use(express.json());
 app.use(express.static("public"));

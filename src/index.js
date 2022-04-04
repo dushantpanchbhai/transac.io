@@ -10,6 +10,10 @@ import { Provider } from "react-redux";
 import reducer from "./store/reducer";
 import { composeWithDevTools } from 'redux-devtools-extension';
 
+
+// firebase extension
+import firebase from "./firebase";
+
 const store = createStore(reducer,composeWithDevTools());
 
 store.subscribe(() => {
